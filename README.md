@@ -1,8 +1,70 @@
 # usdandbr
 
-Access and retrieve data from the USDA Nutrient Data Base.
+[![Build Status](https://travis-ci.org/Nelson-Gon/usdandbr.svg?branch=master)](https://travis-ci.org/Nelson-Gon/usdandbr)
+
+
+**Access and retrieve data from the USDA Nutrient Data Base.**
+
 
 **Version: 0.1.0**
 
-The goal is to provide easy access to the USDA NDB data. This is in the hopes that this would aid researchers looking to study the effects of different feeding behavior on an individual's life and/or aid education of the masses on the importance of proper nutrition. It is also hoped that the package will aid ease of access to USDA NDB data which will in the end provide
-a convenient way to analyse our food.
+The goal is to ease access to the USDA NDB data base in the hope that this will enable researchers looking to study the effects of different feeding behavior(s) on an individual's life and/or aid education of the masses on the importance of proper nutrition.
+
+
+
+**Installing the Package**
+
+```
+devtools::install_github("Nelson-Gon/usdandbr")
+
+```
+
+## Sample usage:
+
+The main function of this package is `get_nutrients` that can be used as follows:
+
+```
+res<-get_nutrients(nutrients = "204",api_key = api_key_here,
+subset = 0,ndbno =NULL,
+max_rows = NULL,
+food_group = NULL,
+offset = 0,result_type = "json")
+
+```
+
+The above returns a list of unprocessed `JSON` and semi_processed data that can be obtained as follows:
+
+**1. Unprocessed JSON**
+  ```
+  res[[1]]
+  
+  ```
+
+**2. Semi_Processed Data**
+
+```
+res[[2]]
+
+
+
+```
+
+To get a `pretty_json` output, one can use `pretty_json` on the above results as follows:
+
+```
+pretty_json(res)
+
+```
+
+To obtain a semi-processed `data.frame` object, use `get_nutrient_info` as shown here. This extracts the first list in the nested list(list of lists).
+
+```
+get_nutrient_info(res)[[1]]
+         Name             Value
+1 nutrient_id               204
+2    nutrient Total lipid (fat)
+3        unit                 g
+4       value              0.11
+5          gm               0.1
+
+```
