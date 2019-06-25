@@ -33,11 +33,11 @@ get_nutrients <- function(result_type = "json",
   if(is.null(api_key) || missing(api_key)){
     stop("An API key is required. Please signup at https://ndb.nal.usda.gov/ndb/doc/index#.")
   }
-  #if(is.null(nutrients)  || missing(nutrients)){
-   # stop("A valid nutrient value must be supplied. Please visit
-    #     https://ndb.nal.usda.gov/ndb/nutrients/index for a list of
-     #    available values. Try 204 for instance.")
-  #}
+  if(is.null(nutrients)  || missing(nutrients)){
+    stop("A valid nutrient value must be supplied. Please visit
+         https://ndb.nal.usda.gov/ndb/nutrients/index for a list of
+         available values. Try 204 for instance.")
+  }
 
   base_url <- "http://api.nal.usda.gov/ndb/nutrients"
 
