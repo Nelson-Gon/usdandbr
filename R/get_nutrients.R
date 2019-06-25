@@ -14,12 +14,12 @@
 #' @return A list of length two. The first list element returns unprocessed data if JSON is requested while the second is a data.frame object from
 #' JSON data. An XML file is returned if xml is requested.
 #' @examples
-#' \dontrun{
-#' get_nutrients(nutrients = "208",api_key = "api_key here",
-#' subset = 0,ndbno = "05309",
-#' max_rows = 30,
-#' food_group = "0500",
-#' offset = "90",result_type = "xml")
+#' \dontrun{get_nutrients(nutrients = "204",
+#' api_key = "your key here",
+#' subset = 0,ndbno =NULL,
+#' max_rows = NULL,
+#' food_group = NULL,
+#' offset = 0,result_type = "json")
 #' }
 #' @export
 get_nutrients <- function(result_type = "json",
@@ -28,16 +28,16 @@ get_nutrients <- function(result_type = "json",
                           max_rows=NULL,
                           food_group=NULL){
   request_URL <- NULL
-  result_type <- tolower(result_type)
+  #result_type <- tolower(result_type)
 
   if(is.null(api_key) || missing(api_key)){
     stop("An API key is required. Please signup at https://ndb.nal.usda.gov/ndb/doc/index#.")
   }
-  if(is.null(nutrients) || missing(nutrients)){
-    stop("A valid nutrient value must be supplied. Please visit
-         https://ndb.nal.usda.gov/ndb/nutrients/index for a list of
-         available values. Try 204 for instance.")
-  }
+  #if(is.null(nutrients)  || missing(nutrients)){
+   # stop("A valid nutrient value must be supplied. Please visit
+    #     https://ndb.nal.usda.gov/ndb/nutrients/index for a list of
+     #    available values. Try 204 for instance.")
+  #}
 
   base_url <- "http://api.nal.usda.gov/ndb/nutrients"
 
@@ -55,10 +55,10 @@ get_nutrients <- function(result_type = "json",
     }
 
     unprocessed_res <- httr::GET(request_URL)
-    if(unprocessed_res$headers$`x-ratelimit-remaining` <= 5){
-      warning("Approaching access limit or access limit reached.")
+    #if(unprocessed_res$headers$`x-ratelimit-remaining` <= 5){
+     # warning("Approaching access limit or access limit reached.")
 
-    }
+    #}
     if(grepl("application/json",unprocessed_res$headers$`content-type`)==FALSE){
       stop("JSON requested but content is not JSON. Please check your input or try again.")
     }
@@ -69,7 +69,7 @@ get_nutrients <- function(result_type = "json",
 
   }
 
-  if(result_type =="xml"){
+  else if(result_type =="xml"){
     base_url <- paste0(base_url,"?nutrients=",nutrients,
                        "&fg=",food_group,"&offset=",
                        offset,"&format=xml",
@@ -83,10 +83,10 @@ get_nutrients <- function(result_type = "json",
     }
 
     xml_result <- httr::GET(request_URL)
-    if(xml_result$headers$`x-ratelimit-remaining` <= 5){
-      warning("Approaching access limit or access limit reached.")
+   # if(xml_result$headers$`x-ratelimit-remaining` <= 5){
+    #  warning("Approaching access limit or access limit reached.")
 
-    }
+    #}
     if(grepl("text/xml",
              xml_result$headers$`content-type`)==FALSE){
       stop("XML requested but content is not XML.

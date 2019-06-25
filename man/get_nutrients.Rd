@@ -35,11 +35,11 @@ A simple function to access and retrieve nutrient data
 from the USDA nutrient data base.
 }
 \examples{
-\dontrun{
-get_nutrients(nutrients = "208",api_key = "api_key here",
-subset = 0,ndbno = "05309",
-max_rows = 30,
-food_group = "0500",
-offset = "90",result_type = "xml")
+\dontrun{get_nutrients(nutrients = "204",
+api_key = "your key here",
+subset = 0,ndbno =NULL,
+max_rows = NULL,
+food_group = NULL,
+offset = 0,result_type = "json")
 }
 }
