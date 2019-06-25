@@ -1,0 +1,20 @@
+Package: usdandbr
+Title: Retrieve Nutrient Information From the  USDA Nutrient Data Base
+Version: 0.1.0
+Authors@R: 
+    person(given = "Nelson",
+           family = "Gonzabato",
+           role = c("aut", "cre"),
+           email = "gonzabato@hotmail.com")
+Description: Access to nutritional data is key to tackling the growing nutritional problems worldwide. From the 
+             increasing rates of diabetes, to the alarming levels of malnutrition in many countries,
+             the importance of access to nutritional data cannot be overemphasised. The goal is to therefore provide nutritional researchers with an easy to use
+             interface to the USDA Nutrient Data Base.
+License: GPL (>= 2)
+Encoding: UTF-8
+LazyData: true
+Imports:
+       httr(>= 1.4.0),
+       plyr(>= 1.8.4),
+       jsonlite(>= 1.6)
+RoxygenNote: 6.1.1
