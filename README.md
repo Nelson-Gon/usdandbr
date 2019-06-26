@@ -19,12 +19,20 @@ devtools::install_github("Nelson-Gon/usdandbr")
 
 ```
 
+**Loading the package**
+
+```
+
+library(usdandbr)
+
+```
+
 ## Sample usage:
 
 The main function of this package is `get_nutrients` that can be used as follows:
 
 ```
-res<-get_nutrients(nutrients = "204",api_key = api_key_here,
+res<-get_nutrients(nutrients = "204",api_key ="api_key_here", 
 subset = 0,ndbno =NULL,
 max_rows = NULL,
 food_group = NULL,
@@ -68,3 +76,9 @@ get_nutrient_info(res)[[1]]
 5          gm               0.1
 
 ```
+
+**Sources**
+1. U.S. Department of Agriculture, Agricultural Research Service. 20xx. USDA National Nutrient Database for Standard Reference, Release . Nutrient Data Laboratory Home Page, http://www.ars.usda.gov/nutrientdata
+
+2. U.S. Department of Agriculture, Agricultural Research Service. 20xx. USDA Branded Food Products Database . Nutrient Data Laboratory Home Page, http://ndb.nal.usda.gov
+
