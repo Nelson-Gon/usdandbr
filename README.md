@@ -94,7 +94,7 @@ get_nutrient_info(res)[[1]]
 
 3. Jay, J., Sanders, A., Reid, R. and Brouwer, C. (2018). Connecting nutrition composition measures to biomedical research. BMC Research Notes, 11(1). 
 
-**If you have got this far, thank you and please provide feedback on what works and what doesn't. **
+**If you have got this far, thank you and please provide feedback on what works and what doesn't.**
 
 **Thank you and Happy Coding.**
 
