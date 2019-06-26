@@ -18,3 +18,5 @@ Imports:
        plyr(>= 1.8.4),
        jsonlite(>= 1.6)
 RoxygenNote: 6.1.1
+URL: https://github.com/Nelson-Gon/usdandbr
+BugReports: https://github.com/Nelson-Gon/usdandbr/issues
