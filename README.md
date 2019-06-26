@@ -40,6 +40,15 @@ offset = 0,result_type = "json")
 
 ```
 
+To easily get a `nutrient_id`(ie nutrients in `get_nutrient`), one can obtain nutrients as shown below:
+
+```
+get_nutrient_id("cafffeine",nutrient_ids)
+
+#[1] 262
+
+```
+
 The above returns a list of unprocessed `JSON` and semi_processed data that can be obtained as follows:
 
 **1. Unprocessed JSON**
