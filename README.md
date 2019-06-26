@@ -40,7 +40,7 @@ offset = 0,result_type = "json")
 
 ```
 
-To easily get a `nutrient_id`(ie nutrients in `get_nutrient`), one can obtain nutrients as shown below:
+To easily get a `nutrient_id`(ie nutrients in `get_nutrients` above), one can obtain nutrients as shown below:
 
 ```
 data(nutrient_ids)
