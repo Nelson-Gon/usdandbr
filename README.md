@@ -43,6 +43,7 @@ offset = 0,result_type = "json")
 To easily get a `nutrient_id`(ie nutrients in `get_nutrient`), one can obtain nutrients as shown below:
 
 ```
+data(nutrient_ids)
 get_nutrient_id("cafffeine",nutrient_ids)
 
 #[1] 262
@@ -93,3 +94,8 @@ get_nutrient_info(res)[[1]]
 
 3. Jay, J., Sanders, A., Reid, R. and Brouwer, C. (2018). Connecting nutrition composition measures to biomedical research. BMC Research Notes, 11(1). 
 
+**If you have got this far, thank you and please provide feedback on what works and what doesn't. **
+
+**Thank you and Happy Coding.**
+
+>Nutrition for all.
