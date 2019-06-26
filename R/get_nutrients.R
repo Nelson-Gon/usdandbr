@@ -13,6 +13,8 @@
 #' @param food_group String. Return results for only a certain food group.
 #' @return A list of length two. The first list element returns unprocessed data if JSON is requested while the second is a data.frame object from
 #' JSON data. An XML file is returned if xml is requested.
+#' @references 
+#' U.S. Department of Agriculture, Agricultural Research Service. 20xx. USDA National Nutrient Database for Standard Reference, Release . Nutrient Data Laboratory Home Page, http://www.ars.usda.gov/nutrientdata
 #' @examples
 #' \dontrun{get_nutrients(nutrients = "204",
 #' api_key = "your key here",

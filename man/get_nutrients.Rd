@@ -43,3 +43,6 @@ food_group = NULL,
 offset = 0,result_type = "json")
 }
 }
+\references{
+U.S. Department of Agriculture, Agricultural Research Service. 20xx. USDA National Nutrient Database for Standard Reference, Release . Nutrient Data Laboratory Home Page, http://www.ars.usda.gov/nutrientdata
+}
