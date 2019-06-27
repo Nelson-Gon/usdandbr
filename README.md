@@ -96,6 +96,8 @@ get_nutrient_info(res)[[1]]
 
 3. Jay, J., Sanders, A., Reid, R. and Brouwer, C. (2018). Connecting nutrition composition measures to biomedical research. BMC Research Notes, 11(1).  [link](https://link.springer.com/article/10.1186%2Fs13104-018-3997-y)
 
+4. USDA Food Reports Data Base(Version 2) https://ndb.nal.usda.gov/ndb/doc/apilist/API-FOOD-REPORT.md
+
 **If you have got this far, thank you and please provide feedback on what works and what doesn't.**
 
 **Thank you and Happy Coding.**
