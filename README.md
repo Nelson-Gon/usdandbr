@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/Nelson-Gon/usdandbr.svg?branch=master)](https://travis-ci.org/Nelson-Gon/usdandbr)
 
+[![license](https://img.shields.io/badge/license-GPL--2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+
 
 **Access and retrieve data from the USDA Nutrient Data Base.**
 
