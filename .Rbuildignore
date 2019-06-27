@@ -4,3 +4,4 @@ LICENSE
 \.Rporj$
 usdandbr.Rproj
 README.html
+^data-raw$

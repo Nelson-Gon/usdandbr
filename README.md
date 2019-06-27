@@ -44,13 +44,15 @@ To easily get a `nutrient_id`(ie nutrients in `get_nutrients` above), one can ob
 
 ```
 data(nutrient_ids)
-get_nutrient_id("cafffeine",nutrient_ids)
+get_nutrient_id("caffeine",nutrient_ids)
 
 #[1] 262
 
 ```
+For more `nutrient_ids`, please use the data set `nutrient_ids` clean. The clean up process is shown in `nutrient_ids_cleanup` based on data provided by [Jay et al.,2018](https://link.springer.com/article/10.1186%2Fs13104-018-3997-y)
 
-The above returns a list of unprocessed `JSON` and semi_processed data that can be obtained as follows:
+
+The result of `get_nutrients` is a list of unprocessed `JSON` and semi_processed data that can be obtained as follows:
 
 **1. Unprocessed JSON**
   ```
@@ -92,7 +94,7 @@ get_nutrient_info(res)[[1]]
 
 2. U.S. Department of Agriculture, Agricultural Research Service. 20xx. USDA Branded Food Products Database . Nutrient Data Laboratory Home Page, http://ndb.nal.usda.gov
 
-3. Jay, J., Sanders, A., Reid, R. and Brouwer, C. (2018). Connecting nutrition composition measures to biomedical research. BMC Research Notes, 11(1). 
+3. Jay, J., Sanders, A., Reid, R. and Brouwer, C. (2018). Connecting nutrition composition measures to biomedical research. BMC Research Notes, 11(1).  [link](https://link.springer.com/article/10.1186%2Fs13104-018-3997-y)
 
 **If you have got this far, thank you and please provide feedback on what works and what doesn't.**
 
