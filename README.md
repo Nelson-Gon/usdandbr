@@ -69,6 +69,16 @@ res[[2]]
 
 ```
 
+To get any form of information from the report, one could use `get_report_info` as shown here:
+
+```
+get_report_info("name", res)
+
+```
+
+The above would return a list with all food names.
+
+
 To get a `pretty_json` output, one can use `pretty_json` on the above results as follows:
 
 ```
