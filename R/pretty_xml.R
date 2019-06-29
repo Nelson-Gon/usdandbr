@@ -16,6 +16,7 @@
 #' if(!require(xml2)) require(xml2)
 #' pretty_xml(res,"food")
 #' }
+#' @export
 pretty_xml <- function(result, tag,target=NULL,
                        return_raw=FALSE){
   processed_xml <- xml2::read_xml(result)
