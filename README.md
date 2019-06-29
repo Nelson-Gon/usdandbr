@@ -86,6 +86,8 @@ pretty_json(res)
 
 ```
 
+
+
 To obtain a semi-processed `data.frame` object, use `get_nutrient_info` as shown here. This extracts the first list in the nested list(list of lists).
 
 ```
@@ -98,6 +100,15 @@ get_nutrient_info(res)[[1]]
 5          gm               0.1
 
 ```
+
+If `xml` was requested in `get_nutrients`, `pretty_xml` can be used to further process the data. For more details on usage, please see `help(pretty_xml)`. For example if we requested `xml`, we could do:
+
+```
+pretty_xml(res,"food",target = "name")
+
+```
+
+The above would return a list of lists with the nutrient data base number, name, weigth and measure. 
 
 **Sources**
 1. U.S. Department of Agriculture, Agricultural Research Service. 20xx. USDA National Nutrient Database for Standard Reference, Release . Nutrient Data Laboratory Home Page, http://www.ars.usda.gov/nutrientdata
