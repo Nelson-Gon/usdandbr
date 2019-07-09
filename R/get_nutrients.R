@@ -24,86 +24,69 @@
 #' offset = 0,result_type = "json")
 #' }
 #' @export
-get_nutrients <- function(result_type = "json",
-                          nutrients=NULL, api_key=NULL,
-                          ndbno=NULL, subset=0, offset=0,
-                          max_rows=NULL,
-                          food_group=NULL){
+get_nutrients <- function (result_type = "json", nutrients = NULL, api_key = NULL, 
+                           ndbno = NULL, subset = 0, offset = 0, max_rows = NULL, food_group = NULL) 
+{
   request_URL <- NULL
-  #result_type <- tolower(result_type)
-
-  if(is.null(api_key) || missing(api_key)){
+  if (is.null(api_key) || missing(api_key)) {
     stop("An API key is required. Please signup at https://ndb.nal.usda.gov/ndb/doc/index#.")
   }
-  if(is.null(nutrients)  || missing(nutrients)){
-    stop("A valid nutrient value must be supplied. Please visit
-         https://ndb.nal.usda.gov/ndb/nutrients/index for a list of
-         available values. Try 204 for instance.")
+  if (is.null(nutrients) || missing(nutrients)) {
+    stop("A valid nutrient value must be supplied. Please visit\n         https://ndb.nal.usda.gov/ndb/nutrients/index for a list of\n         available values. Try 204 for instance.")
   }
-
   base_url <- "http://api.nal.usda.gov/ndb/nutrients"
-
-  if(result_type=="json"){
-    base_url <- paste0(base_url,"?format=json&api_key=",
-                       api_key,"&nutrients=",nutrients,
-                       "&fg=",food_group,"&offset=",
-                       offset,
-                       collapse = "")
-    if(is.null(ndbno) || missing(ndbno)){
+  if (result_type == "json") {
+    base_url <- paste0(base_url, "?format=json&api_key=", 
+                       api_key, "&nutrients=", nutrients, "&fg=", food_group, 
+                       "&offset=", offset, collapse = "")
+    if (is.null(ndbno) || missing(ndbno)) {
       request_URL <- base_url
     }
-    else{
-      request_URL <- paste0(base_url,"&ndbno=",ndbno,collapse="")
+    else {
+      request_URL <- paste0(base_url, "&ndbno=", ndbno, 
+                            collapse = "")
     }
-
     unprocessed_res <- httr::GET(request_URL)
-    #if(unprocessed_res$headers$`x-ratelimit-remaining` <= 5){
-     # warning("Approaching access limit or access limit reached.")
-
-    #}
-    if(grepl("application/json",unprocessed_res$headers$`content-type`)==FALSE){
+    if (grepl("application/json", unprocessed_res$headers$`content-type`) == 
+        FALSE) {
       stop("JSON requested but content is not JSON. Please check your input or try again.")
     }
-    #process response
-    processed_res <- jsonlite::fromJSON(httr::content(unprocessed_res, "text"),
-                                        simplifyVector = FALSE)
-    list(unprocessed_res,processed_res)
-
-  }
-
-  else if(result_type =="xml"){
-    base_url <- paste0(base_url,"?nutrients=",nutrients,
-                       "&fg=",food_group,"&offset=",
-                       offset,"&format=xml",
-                       "&api_key=",api_key,
-                       collapse = "")
-    if(is.null(ndbno) || missing(ndbno)){
-      request_URL <- base_url
+    
+    
+    processed_res <- jsonlite::fromJSON(httr::content(unprocessed_res, 
+                                                      "text"), simplifyVector = FALSE)
+    
+    
+    final_res <- list(unprocessed_res, processed_res)
+    if(grepl("error",final_res[[2]])){
+      stop(sprintf(final_res[[2]]$errors$error[[1]]$message,
+                   "In addition HTTP status code:",
+                   final_res[[2]]$errors$error[[1]]$status))
+      
+      
     }
     else{
-      request_URL <- paste0(base_url,"&ndbno=",ndbno,collapse="")
+      final_res
     }
-
+  }
+  else if (result_type == "xml") {
+    base_url <- paste0(base_url, "?nutrients=", nutrients, 
+                       "&fg=", food_group, "&offset=", offset, "&format=xml", 
+                       "&api_key=", api_key, collapse = "")
+    if (is.null(ndbno) || missing(ndbno)) {
+      request_URL <- base_url
+    }
+    else {
+      request_URL <- paste0(base_url, "&ndbno=", ndbno, 
+                            collapse = "")
+    }
     xml_result <- httr::GET(request_URL)
-   # if(xml_result$headers$`x-ratelimit-remaining` <= 5){
-    #  warning("Approaching access limit or access limit reached.")
-
-    #}
-    if(grepl("text/xml",
-             xml_result$headers$`content-type`)==FALSE){
-      stop("XML requested but content is not XML.
-           Please check your input or try again.")
+    
+    if(httr::http_type(xml_result) !="application/xml"){
+      stop("Result is not XML, please try again or check your input.")
+      
     }
+    
     xml_result
   }
-
-
-
 }
-
-
-
-
-
-
-

@@ -12,14 +12,14 @@ pretty_json <- function(result){
 #' @param result An object obtained from `get_nutrients`
 #' @export
  get_nutrient_info <- function(result){
-  plyr::llply(result[[2]]$report$foods,
-              function(x){
-                semi_clean <- data.frame(Value = unlist(x$nutrients))
-                semi_clean$Name <- row.names(semi_clean)
-                row.names(semi_clean) <- NULL
-                semi_clean[,c(2,1)]
-                #reshape(semi_clean,direction = "wide")
-                #possibly future reshape, currently limiting dependencies.
-              })
+   plyr::llply(result[[2]]$report$foods, function(x) {
+     semi_clean <- data.frame(Source= x[["name"]],
+                              Value = 
+                                unlist(x$nutrients))
+     semi_clean$Type <- row.names(semi_clean)
+     row.names(semi_clean) <- NULL
+     
+     semi_clean[,c(1,3,2)]
+   })
 
 }
