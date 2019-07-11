@@ -11,7 +11,7 @@ get_nutrients(result_type = "json", nutrients = NULL, api_key = NULL,
 \arguments{
 \item{result_type}{A string. One of json or xml depending on  the type of format required.}
 
-\item{nutrients}{A string. A nutrient id as provided on the nutrient data base website.}
+\item{nutrients}{A string or vector of strings. A nutrient id as provided on the nutrient data base website.}
 
 \item{api_key}{A string. A unique api_key obtained after signingup at [NDB](https://ndb.nal.usda.gov/ndb/doc/index#.)}
 

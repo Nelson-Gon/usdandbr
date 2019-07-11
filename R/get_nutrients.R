@@ -3,7 +3,7 @@
 #' from the USDA nutrient data base.
 #' @importFrom utils str
 #' @param result_type A string. One of json or xml depending on  the type of format required.
-#' @param nutrients  A string. A nutrient id as provided on the nutrient data base website.
+#' @param nutrients  A string or vector of strings. A nutrient id as provided on the nutrient data base website.
 #' @param api_key    A string. A unique api_key obtained after signingup at [NDB](https://ndb.nal.usda.gov/ndb/doc/index#.)
 #' @param ndbno      A string. A unique ndb number for a specific food of interest. Use this if nutrients is set
 #' to `NULL`.
@@ -37,13 +37,15 @@ get_nutrients <- function (result_type = "json", nutrients = NULL, api_key = NUL
   base_url <- "http://api.nal.usda.gov/ndb/nutrients"
   if (result_type == "json") {
     base_url <- paste0(base_url, "?format=json&api_key=", 
-                       api_key, "&nutrients=", nutrients, "&fg=", food_group, 
+                       api_key, paste0("&nutrients=",
+                                       nutrients), 
+                       "&fg=", food_group, 
                        "&offset=", offset, collapse = "")
     if (is.null(ndbno) || missing(ndbno)) {
       request_URL <- base_url
     }
     else {
-      request_URL <- paste0(base_url, "&ndbno=", ndbno, 
+      request_URL <- paste0(base_url, paste0("&ndbno=", ndbno), 
                             collapse = "")
     }
     unprocessed_res <- httr::GET(request_URL)
@@ -70,14 +72,29 @@ get_nutrients <- function (result_type = "json", nutrients = NULL, api_key = NUL
     }
   }
   else if (result_type == "xml") {
-    base_url <- paste0(base_url, "?nutrients=", nutrients, 
-                       "&fg=", food_group, "&offset=", offset, "&format=xml", 
-                       "&api_key=", api_key, collapse = "")
+    base_url <- gsub("nutrients","reports/",base_url)
+    if(length(nutrients) > 1){
+      base_url <- paste0(base_url, paste0("?nutrients=", 
+                                          nutrients[1]),
+                         paste0("&nutrients=",
+                                nutrients[2:length(nutrients)]),
+                         "&fg=", food_group, "&offset=", offset, "&format=xml", 
+                         "&api_key=", api_key, collapse = "")
+      
+    }
+    else{
+      base_url <- paste0(base_url, "?nutrients=", nutrients,
+                         "&fg=", food_group, "&offset=", 
+                         offset, "&format=xml", 
+                         "&api_key=", api_key, collapse = "")
+    }
+    
     if (is.null(ndbno) || missing(ndbno)) {
       request_URL <- base_url
     }
     else {
-      request_URL <- paste0(base_url, "&ndbno=", ndbno, 
+      request_URL <- paste0(base_url, paste0("&ndbno=",
+                                             ndbno), 
                             collapse = "")
     }
     xml_result <- httr::GET(request_URL)
