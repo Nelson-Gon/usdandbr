@@ -30,6 +30,8 @@ library(usdandbr)
 
 ## Sample usage:
 
+
+# **Food Reports**
 The main function of this package is `get_nutrients` that can be used as follows:
 
 ```
@@ -111,14 +113,40 @@ pretty_xml(res,"food",target = "name")
 
 The above would return a list of lists with the nutrient data base number, name, weigth and measure. 
 
-**Sources**
-1. U.S. Department of Agriculture, Agricultural Research Service. 20xx. USDA National Nutrient Database for Standard Reference, Release . Nutrient Data Laboratory Home Page, http://www.ars.usda.gov/nutrientdata
+## **Lists**
 
-2. U.S. Department of Agriculture, Agricultural Research Service. 20xx. USDA Branded Food Products Database . Nutrient Data Laboratory Home Page, http://ndb.nal.usda.gov
+To get lists from the database, we can use `get_lists` as follows:
+
+```
+res <- get_list(api_key = my_key,list_type = "ns",
+                sort_by = "id",max_items = 50,
+                offset = 12,format = "xml")
+        
+```
+
+The above will allow us to obtain a list of speciality nutrients(`ns`) sorted by id. Depending on the format requested, the results can then be further processed as follows:
+
+```
+res
+usdandbr::pretty_xml(res,tag="name")
+usdandbr::pretty_json(res)
+
+```
+
+
+For more information about any of these functions, please take a look at `?function_name` or see detailed information for the package in `help(package="usdandbr")`. For issues, feature requests and/or contributions, please raise an issue at [usdandbr](https://www.github.com/Nelson-Gon/usdandbr).
+
+
+
+**Sources**
+1.US Department of Agriculture, Agricultural Research Service, Nutrient Data Laboratory. USDA National Nutrient Database for Standard Reference, Release 28. Version Current:  September 2015.  Internet:  /nea/bhnrc/ndl
+
+2. US Department of Agriculture, Agricultural Research Service, Nutrient Data Laboratory. USDA National Nutrient Database for Standard Reference, Release 28. Version Current:  September 2015.  Internet:  /nea/bhnrc/ndl
 
 3. Jay, J., Sanders, A., Reid, R. and Brouwer, C. (2018). Connecting nutrition composition measures to biomedical research. BMC Research Notes, 11(1).  [link](https://link.springer.com/article/10.1186%2Fs13104-018-3997-y)
 
 4. USDA Food Reports Data Base(Version 2) https://ndb.nal.usda.gov/ndb/doc/apilist/API-FOOD-REPORT.md
+
 
 **If you have got this far, thank you and please provide feedback on what works and what doesn't.**
 
