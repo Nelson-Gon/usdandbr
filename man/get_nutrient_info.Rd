@@ -4,12 +4,24 @@
 \alias{get_nutrient_info}
 \title{Convert JSON data to a simpler data.frame object.}
 \usage{
-get_nutrient_info(result)
+get_nutrient_info(result, abbr = TRUE, bind_data = TRUE)
 }
 \arguments{
 \item{result}{An object obtained from `get_nutrients`}
+
+\item{abbr}{Logical. Should the names of Source be abbrevaited? Defaults to  TRUE.}
+
+\item{bind_data}{Logical. Should the data be bound as a single `data.frame` object? Defaults
+to TRUE.}
 }
 \description{
 When JSON data is requested, `get_nutrient info` provides
 a convenient way to get semi-clean data.
+}
+\examples{
+\dontrun{
+res <-get_nutrients(nutrients = c("204","510"),
+api_key = my_key)
+get_nutrient_info(my_key)
+}
 }
