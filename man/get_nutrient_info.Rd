@@ -14,6 +14,11 @@ get_nutrient_info(result, abbr = TRUE, bind_data = TRUE)
 \item{bind_data}{Logical. Should the data be bound as a single `data.frame` object? Defaults
 to TRUE.}
 }
+\value{
+The default return value is a data.frame object showing
+the corresponding data as requested with `get_nutrients`. If bind_data is
+set to FALSE, a list of data frames is returned instead.
+}
 \description{
 When JSON data is requested, `get_nutrient info` provides
 a convenient way to get semi-clean data.
@@ -22,6 +27,9 @@ a convenient way to get semi-clean data.
 \dontrun{
 res <-get_nutrients(nutrients = c("204","510"),
 api_key = my_key)
-get_nutrient_info(my_key)
+get_nutrient_info(res)
 }
+}
+\seealso{
+\code{\link{get_nutrients}}
 }

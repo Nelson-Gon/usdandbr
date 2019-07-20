@@ -13,11 +13,15 @@ pretty_json <- function(result){
 #' @param abbr Logical. Should the names of Source be abbrevaited? Defaults to  TRUE.
 #' @param bind_data Logical. Should the data be bound as a single `data.frame` object? Defaults
 #' to TRUE.
+#' @return The default return value is a data.frame object showing
+#' the corresponding data as requested with `get_nutrients`. If bind_data is
+#' set to FALSE, a list of data frames is returned instead.
+#' @seealso \code{\link{get_nutrients}}
 #' @examples 
 #' \dontrun{
 #' res <-get_nutrients(nutrients = c("204","510"),
 #' api_key = my_key)
-#' get_nutrient_info(my_key)
+#' get_nutrient_info(res)
 #' }
 #' @export
  get_nutrient_info <- function(result, abbr = TRUE, bind_data = TRUE){
