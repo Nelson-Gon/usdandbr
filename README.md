@@ -30,7 +30,7 @@ library(usdandbr)
 
 ## Sample usage:
 
-# **Setting an API_key for a session**
+**Setting an API_key for a session**
 
 ```
 set_apikey("my_key")
@@ -143,11 +143,14 @@ usdandbr::pretty_json(res)
 ```
 
 
-For more information about any of these functions, please take a look at `?function_name` or see detailed information for the package in `help(package="usdandbr")`. For issues, feature requests and/or contributions, please raise an issue at [usdandbr](https://www.github.com/Nelson-Gon/usdandbr).
+For more information about any of these functions, please take a look at `?function_name` or see detailed information for the package in `help(package="usdandbr")`. 
+
+For issues, feature requests and/or contributions, please raise an issue at [usdandbr](https://www.github.com/Nelson-Gon/usdandbr/issues).
 
 
 
 **Sources**
+
 1.US Department of Agriculture, Agricultural Research Service, Nutrient Data Laboratory. USDA National Nutrient Database for Standard Reference, Release 28. Version Current:  September 2015.  Internet:  /nea/bhnrc/ndl
 
 2. US Department of Agriculture, Agricultural Research Service, Nutrient Data Laboratory. USDA National Nutrient Database for Standard Reference, Release 28. Version Current:  September 2015.  Internet:  /nea/bhnrc/ndl
