@@ -19,8 +19,7 @@ pretty_json <- function(result){
 #' @seealso \code{\link{get_nutrients}}
 #' @examples 
 #' \dontrun{
-#' res <-get_nutrients(nutrients = c("204","510"),
-#' api_key = my_key)
+#' res <-get_nutrients(nutrients = c("204","510"))
 #' get_nutrient_info(res)
 #' }
 #' @export

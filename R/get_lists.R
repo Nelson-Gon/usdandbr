@@ -22,7 +22,7 @@
 #' @seealso \code{\link{get_nutrients}} \code{\link{pretty_xml}} \code{\link{pretty_json}}
 #' @examples 
 #' \dontrun{
-#' res <- get_list(api_key = my_key,
+#' res <- get_list(
 #' list_type = "ns",sort_by = "id",
 #' max_items = 50,offset = 12,format = "xml")
 #' res
@@ -34,16 +34,22 @@
 get_list <- function(list_type="f", sort_by="n", api_key=NULL,
                      max_items=30, offset=0,
                      format="json", return_request=FALSE){
+  
+  if(is.null(api_key)){
+    api_key <- get_apikey()
+    if(is.null(api_key)){
+      stop("Please provide an API key either manually or by
+           setting it for the session with set_apikey. Sign up for 
+           a key at https://ndb.nal.usda.gov/ndb/doc/index")
+    }
+  }
   base_url <- "https://api.nal.usda.gov/ndb/list?format="
   
-  if(is.null(api_key) || missing(api_key)){
-    stop("An API key is required to query the data base. 
-         Please sign up for a key at https://ndb.nal.usda.gov/ndb/doc/index#")
-  }
-  
-  request_url <- paste0(base_url,"json&lt=",
+ 
+   request_url <- paste0(base_url,"json&lt=",
                         list_type,"&sort=",
-                        sort_by,"&api_key=",api_key)
+                        sort_by,"&api_key=",
+                        api_key)
   
   if(format=="json"){
     request_url <- request_url

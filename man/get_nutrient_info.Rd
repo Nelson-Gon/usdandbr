@@ -25,8 +25,7 @@ a convenient way to get semi-clean data.
 }
 \examples{
 \dontrun{
-res <-get_nutrients(nutrients = c("204","510"),
-api_key = my_key)
+res <-get_nutrients(nutrients = c("204","510"))
 get_nutrient_info(res)
 }
 }

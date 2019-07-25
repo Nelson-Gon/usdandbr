@@ -13,7 +13,8 @@ get_nutrients(result_type = "json", nutrients = NULL, api_key = NULL,
 
 \item{nutrients}{A string or vector of strings. A nutrient id as provided on the nutrient data base website.}
 
-\item{api_key}{A string. A unique api_key obtained after signingup at [NDB](https://ndb.nal.usda.gov/ndb/doc/index#.)}
+\item{api_key}{A string. A unique api_key obtained after signingup at [NDB](https://ndb.nal.usda.gov/ndb/doc/index#.) If this is not set with
+\code{\link{set_apikey}}, then the user can manually set it here.}
 
 \item{ndbno}{A string. A unique ndb number for a specific food of interest. Use this if nutrients is set
 to `NULL`.}
@@ -36,7 +37,6 @@ from the USDA nutrient data base.
 }
 \examples{
 \dontrun{get_nutrients(nutrients = "204",
-api_key = "your key here",
 subset = 0,ndbno =NULL,
 max_rows = NULL,
 food_group = NULL,

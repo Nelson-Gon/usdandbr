@@ -43,7 +43,7 @@ and g for food group. Details available at \url{https://ndb.nal.usda.gov/ndb/doc
 }
 \examples{
 \dontrun{
-res <- get_list(api_key = my_key,
+res <- get_list(
 list_type = "ns",sort_by = "id",
 max_items = 50,offset = 12,format = "xml")
 res

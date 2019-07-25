@@ -30,12 +30,21 @@ library(usdandbr)
 
 ## Sample usage:
 
+# **Setting an API_key for a session**
+
+```
+set_apikey("my_key")
+
+```
+
+If the above is not set, a user can manually set the key on each call of a function by passing the key to the parameter 
+that holds the `api_key` as per a function's documentation. 
 
 # **Food Reports**
 The main function of this package is `get_nutrients` that can be used as follows:
 
 ```
-res<-get_nutrients(nutrients = "204",api_key ="api_key_here", 
+res<-get_nutrients(nutrients = "204", 
 subset = 0,ndbno =NULL,
 max_rows = NULL,
 food_group = NULL,
@@ -118,7 +127,7 @@ The above would return a list of lists with the nutrient data base number, name,
 To get lists from the database, we can use `get_lists` as follows:
 
 ```
-res <- get_list(api_key = my_key,list_type = "ns",
+res <- get_list(list_type = "ns",
                 sort_by = "id",max_items = 50,
                 offset = 12,format = "xml")
         
