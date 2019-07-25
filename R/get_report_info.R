@@ -10,6 +10,7 @@
 #' }
 #' @seealso \code{\link{get_nutrient_info}}
 #' \code{\link{get_nutrients}}
+#' @export
 get_report_info<- function(what,result){
   #what <- deparse(substitute(what))
   # stick tto strings. Avoid "abstraction"
