@@ -47,8 +47,8 @@ res <- get_list(
 list_type = "ns",sort_by = "id",
 max_items = 50,offset = 12,format = "xml")
 res
-usdandbr::pretty_xml(res,tag="name")
-usdandbr::pretty_json(res)
+usdar::pretty_xml(res,tag="name")
+usdar::pretty_json(res)
 }
 }
 \references{

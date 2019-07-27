@@ -29,11 +29,6 @@ get_nutrients <- function (result_type = "json", nutrients = NULL, api_key = NUL
 {
   if(is.null(api_key)){
     api_key <- get_apikey()
-    if(is.null(api_key)){
-      stop("Please set a user API key with set_apikey
-           or manually provide an API key by setting it 
-           to api_key")
-    }
   }
   request_URL <- NULL
 if (is.null(nutrients) || missing(nutrients)) {
@@ -57,6 +52,15 @@ if (is.null(nutrients) || missing(nutrients)) {
     if (grepl("application/json", unprocessed_res$headers$`content-type`) == 
         FALSE) {
       stop("JSON requested but content is not JSON. Please check your input or try again.")
+    }
+    
+    if(httr::http_error(unprocessed_res) & 
+       unprocessed_res$status_code == 403){
+      stop("Access to the server was denied. 
+      Did you provide a correct API key?!
+           Please sign up for one at 
+           https://ndb.nal.usda.gov/ndb/doc/index")
+      
     }
     
     
@@ -103,6 +107,14 @@ if (is.null(nutrients) || missing(nutrients)) {
                             collapse = "")
     }
     xml_result <- httr::GET(request_URL)
+    
+    if(httr::http_error(xml_result) & 
+       xml_result$status_code == 403){
+      stop("Access to the server was denied. 
+      Did you provide a correct API key?!
+           Please sign up for one at 
+           https://ndb.nal.usda.gov/ndb/doc/index")
+    }
     
     if(httr::http_type(xml_result) !="application/xml"){
       stop("Result is not XML, please try again or check your input.")

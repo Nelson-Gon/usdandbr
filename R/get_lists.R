@@ -37,12 +37,7 @@ get_list <- function(list_type="f", sort_by="n", api_key=NULL,
   
   if(is.null(api_key)){
     api_key <- get_apikey()
-    if(is.null(api_key)){
-      stop("Please provide an API key either manually or by
-           setting it for the session with set_apikey. Sign up for 
-           a key at https://ndb.nal.usda.gov/ndb/doc/index")
-    }
-  }
+   }
   base_url <- "https://api.nal.usda.gov/ndb/list?format="
   
  
@@ -54,6 +49,13 @@ get_list <- function(list_type="f", sort_by="n", api_key=NULL,
   if(format=="json"){
     request_url <- request_url
     unprocessed_res <- httr::GET(url=request_url)
+    if(httr::http_error(unprocessed_res) & 
+       unprocessed_res$status_code==403){
+      stop("Access to the server was denied. 
+      Did you provide a correct API key?!
+           Please sign up for one at 
+           https://ndb.nal.usda.gov/ndb/doc/index")
+    }
     semi_processed_res <-jsonlite::fromJSON(httr::content(unprocessed_res,"text"))
     
     final_res <- list(unprocessed_res,semi_processed_res)
@@ -67,7 +69,15 @@ get_list <- function(list_type="f", sort_by="n", api_key=NULL,
   }
   else{
     request_url <- gsub("json","xml", request_url)
-    httr::GET(request_url)
+    final_res <- httr::GET(request_url)
+    if(httr::http_error(final_res) & 
+       final_res$status_code==403){
+      stop("Access to the server was denied. 
+      Did you provide a correct API key?!
+           Please sign up for one at 
+           https://ndb.nal.usda.gov/ndb/doc/index")
+    }
+    
     
   }
   
