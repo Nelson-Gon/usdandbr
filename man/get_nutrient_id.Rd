@@ -10,7 +10,8 @@ get_nutrient_id(nutrient_name, df)
 \item{nutrient_name}{Name of the nutrient for which an id is returned.}
 
 \item{df}{The data set that contains nutrient ids. Can be loaded into the 
-environment by calling `data("nutrient_ids")`}
+environment by calling `data("nutrient_ids")`. If no data set is provided, the default is to 
+use `nutrient_ids`.}
 }
 \value{
 Returns the nutrient id.
