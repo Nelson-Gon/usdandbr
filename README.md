@@ -1,6 +1,6 @@
-# usdandbr
+# usdar
 
-[![Build Status](https://travis-ci.org/Nelson-Gon/usdandbr.svg?branch=master)](https://travis-ci.org/Nelson-Gon/usdandbr)   [![license](https://img.shields.io/badge/license-GPL--2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+[![Build Status](https://travis-ci.org/Nelson-Gon/usdar.svg?branch=master)](https://travis-ci.org/Nelson-Gon/usdar)   [![license](https://img.shields.io/badge/license-GPL--2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
 
@@ -16,7 +16,7 @@ The goal is to ease access to the USDA NDB data base in the hope that this will 
 **Installing the Package**
 
 ```
-devtools::install_github("Nelson-Gon/usdandbr")
+devtools::install_github("Nelson-Gon/usdar")
 
 ```
 
@@ -24,7 +24,7 @@ devtools::install_github("Nelson-Gon/usdandbr")
 
 ```
 
-library(usdandbr)
+library(usdar)
 
 ```
 
@@ -137,15 +137,15 @@ The above will allow us to obtain a list of speciality nutrients(`ns`) sorted by
 
 ```
 res
-usdandbr::pretty_xml(res,tag="name")
-usdandbr::pretty_json(res)
+usdar::pretty_xml(res,tag="name")
+usdar::pretty_json(res)
 
 ```
 
 
-For more information about any of these functions, please take a look at `?function_name` or see detailed information for the package in `help(package="usdandbr")`. 
+For more information about any of these functions, please take a look at `?function_name` or see detailed information for the package in `help(package="usdar")`. 
 
-For issues, feature requests and/or contributions, please raise an issue at [usdandbr](https://www.github.com/Nelson-Gon/usdandbr/issues).
+For issues, feature requests and/or contributions, please raise an issue at [usdar](https://www.github.com/Nelson-Gon/usdar/issues).
 
 
 

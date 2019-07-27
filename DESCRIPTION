@@ -1,4 +1,4 @@
-Package: usdandbr
+Package: usdar
 Title: Retrieve Nutrient Information From the  USDA Nutrient Data Base
 Version: 0.1.0
 Authors@R: 
@@ -20,5 +20,5 @@ Imports:
        jsonlite(>= 1.6),
        xml2(>= 1.2.0)
 RoxygenNote: 6.1.1
-URL: https://github.com/Nelson-Gon/usdandbr
-BugReports: https://github.com/Nelson-Gon/usdandbr/issues
+URL: https://github.com/Nelson-Gon/usdar
+BugReports: https://github.com/Nelson-Gon/usdar/issues
