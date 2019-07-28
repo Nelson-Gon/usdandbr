@@ -4,7 +4,7 @@
 \alias{get_nutrients}
 \title{USDA Nutrient Database Information Retrieval.}
 \source{
-\url{\link{https://ndb.nal.usda.gov/ndb/doc/apilist/API-NUTRIENT-REPORT.md}}
+\url{https://ndb.nal.usda.gov/ndb/doc/apilist/API-NUTRIENT-REPORT.md}
 }
 \usage{
 get_nutrients(result_type = "json", nutrients = NULL, api_key = NULL,

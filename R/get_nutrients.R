@@ -23,7 +23,7 @@
 #' max_rows = 50, 
 #' subset = 1)
 #' }
-#' @source \url{\link{https://ndb.nal.usda.gov/ndb/doc/apilist/API-NUTRIENT-REPORT.md}}
+#' @source \url{https://ndb.nal.usda.gov/ndb/doc/apilist/API-NUTRIENT-REPORT.md}
 #' @export
 get_nutrients <- function (result_type = "json", nutrients = NULL, api_key = NULL, 
                            ndbno = NULL, subset = 0,
