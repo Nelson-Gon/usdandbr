@@ -76,14 +76,15 @@ The result of `get_nutrients` is a list of unprocessed `JSON` and semi_processed
 To get any form of information from the report, one could use `get_nutrient_info` as shown here:
 
 ```
-head(get_nutrient_info(res, abbr = T))
-#          Source Type  Value
-#1 Alcoholic beve    1    510
-#2 Alcoholic beve    2 Valine
-#3 Alcoholic beve    3      g
-#4 Alcoholic beve    4     --
-#5 Alcoholic beve    5     --
-#6 Alcoholic beve    6    204
+res<-get_nutrients(nutrients = "204")
+head(get_nutrient_info(res))
+#         Source        Type             Value
+#1  Abiyuch, raw nutrient_id               204
+#2  Abiyuch, raw    nutrient Total lipid (fat)
+#3  Abiyuch, raw        unit                 g
+#4  Abiyuch, raw       value              0.11
+#5  Abiyuch, raw          gm               0.1
+#6 Acerola juice nutrient_id               204
 
 ```
 
