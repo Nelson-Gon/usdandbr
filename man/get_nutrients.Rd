@@ -3,9 +3,12 @@
 \name{get_nutrients}
 \alias{get_nutrients}
 \title{USDA Nutrient Database Information Retrieval.}
+\source{
+\url{\link{https://ndb.nal.usda.gov/ndb/doc/apilist/API-NUTRIENT-REPORT.md}}
+}
 \usage{
 get_nutrients(result_type = "json", nutrients = NULL, api_key = NULL,
-  ndbno = NULL, subset = 0, offset = 0, max_rows = NULL,
+  ndbno = NULL, subset = 0, offset = 0, max_rows = 50,
   food_group = NULL)
 }
 \arguments{
@@ -23,7 +26,7 @@ to `NULL`.}
 
 \item{offset}{Where should offsetting begin? Defaults to 0. Lower values mean more results.}
 
-\item{max_rows}{Numeric. Maximum number of rows to return.}
+\item{max_rows}{Numeric. Maximum number of rows to return. Defaults to 50.}
 
 \item{food_group}{String. Return results for only a certain food group.}
 }
@@ -36,11 +39,11 @@ A simple function to access and retrieve nutrient data
 from the USDA nutrient data base.
 }
 \examples{
-\dontrun{get_nutrients(nutrients = "204",
-subset = 0,ndbno =NULL,
-max_rows = NULL,
-food_group = NULL,
-offset = 0,result_type = "json")
+\dontrun{
+get_nutrients(result_type = "json", nutrients = "204",
+food_group = "0500",
+max_rows = 50, 
+subset = 1)
 }
 }
 \references{

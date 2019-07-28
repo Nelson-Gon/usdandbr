@@ -10,22 +10,25 @@
 #' to `NULL`.
 #' @param subset   Numeric. Defaults to 0 for all food types. 1 to return common food types.
 #' @param offset   Where should offsetting begin? Defaults to 0. Lower values mean more results.
-#' @param max_rows Numeric. Maximum number of rows to return.
+#' @param max_rows Numeric. Maximum number of rows to return. Defaults to 50. 
 #' @param food_group String. Return results for only a certain food group.
 #' @return A list of length two. The first list element returns unprocessed data if JSON is requested while the second is a data.frame object from
 #' JSON data. An XML file is returned if xml is requested.
 #' @references 
 #' U.S. Department of Agriculture, Agricultural Research Service. 20xx. USDA National Nutrient Database for Standard Reference, Release . Nutrient Data Laboratory Home Page, http://www.ars.usda.gov/nutrientdata
 #' @examples
-#' \dontrun{get_nutrients(nutrients = "204",
-#' subset = 0,ndbno =NULL,
-#' max_rows = NULL,
-#' food_group = NULL,
-#' offset = 0,result_type = "json")
+#' \dontrun{
+#' get_nutrients(result_type = "json", nutrients = "204",
+#' food_group = "0500",
+#' max_rows = 50, 
+#' subset = 1)
 #' }
+#' @source \url{\link{https://ndb.nal.usda.gov/ndb/doc/apilist/API-NUTRIENT-REPORT.md}}
 #' @export
 get_nutrients <- function (result_type = "json", nutrients = NULL, api_key = NULL, 
-                           ndbno = NULL, subset = 0, offset = 0, max_rows = NULL, food_group = NULL) 
+                           ndbno = NULL, subset = 0,
+                           offset = 0, max_rows = 50,
+                           food_group = NULL) 
 {
   if(is.null(api_key)){
     api_key <- get_apikey()
@@ -38,9 +41,12 @@ if (is.null(nutrients) || missing(nutrients)) {
   if (result_type == "json") {
     base_url <- paste0(base_url, "?format=json&api_key=", 
                        api_key, paste0("&nutrients=",
-                                       nutrients), 
-                       "&fg=", food_group, 
-                       "&offset=", offset, collapse = "")
+                                       nutrients),"&max=",
+                       max_rows,"&offset=",
+                       offset,
+                       "&fg=", food_group,"&subset=",
+                       subset,
+                        collapse = "")
     if (is.null(ndbno) || missing(ndbno)) {
       request_URL <- base_url
     }
@@ -87,12 +93,14 @@ if (is.null(nutrients) || missing(nutrients)) {
                                           nutrients[1]),
                          paste0("&nutrients=",
                                 nutrients[2:length(nutrients)]),
+                         "&max=",max_rows,"&subset=",subset,
                          "&fg=", food_group, "&offset=", offset, "&format=xml", 
                          "&api_key=", api_key, collapse = "")
       
     }
     else{
       base_url <- paste0(base_url, "?nutrients=", nutrients,
+                         "&max=",max_rows,"&subset=",subset,
                          "&fg=", food_group, "&offset=", 
                          offset, "&format=xml", 
                          "&api_key=",api_key, collapse = "")
@@ -121,6 +129,8 @@ if (is.null(nutrients) || missing(nutrients)) {
       
     }
     
-    xml_result
+    else{
+      xml_result
+    }
   }
 }
