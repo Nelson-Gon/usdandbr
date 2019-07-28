@@ -33,15 +33,16 @@ get_nutrients <- function (result_type = "json", nutrients = NULL, api_key = NUL
   if(is.null(api_key)){
     api_key <- get_apikey()
   }
-  request_URL <- NULL
+ 
 if (is.null(nutrients) || missing(nutrients)) {
     stop("A valid nutrient value must be supplied. Please visit\n         https://ndb.nal.usda.gov/ndb/nutrients/index for a list of\n         available values. Try 204 for instance.")
   }
-  base_url <- "http://api.nal.usda.gov/ndb/nutrients"
+  base_url <- "http://api.nal.usda.gov/ndb/nutrients/"
   if (result_type == "json") {
     base_url <- paste0(base_url, "?format=json&api_key=", 
                        api_key, paste0("&nutrients=",
-                                       nutrients),"&max=",
+                                       nutrients,
+                                       collapse = ""),"&max=",
                        max_rows,"&offset=",
                        offset,
                        "&fg=", food_group,"&subset=",
@@ -86,51 +87,47 @@ if (is.null(nutrients) || missing(nutrients)) {
       final_res
     }
   }
-  else if (result_type == "xml") {
-    base_url <- gsub("nutrients","reports/",base_url)
-    if(length(nutrients) > 1){
-      base_url <- paste0(base_url, paste0("?nutrients=", 
-                                          nutrients[1]),
-                         paste0("&nutrients=",
-                                nutrients[2:length(nutrients)]),
-                         "&max=",max_rows,"&subset=",subset,
-                         "&fg=", food_group, "&offset=", offset, "&format=xml", 
-                         "&api_key=", api_key, collapse = "")
+  else {
+    xml_base <- "http://api.nal.usda.gov/ndb/reports/"
+if(length(nutrients)==1){
+  request_URL <- paste0(xml_base, 
+                        "?nutrients=", 
+                        nutrients,
+                        paste0("&ndbno=",
+                               ndbno),
+                        "&max=",max_rows,
+                        "&offset=",offset,
+                        "&fg=", food_group,
+                        "&format=xml", 
+                        "&api_key=", api_key,
+                        collapse = "")
+  
+}
+
       
-    }
-    else{
-      base_url <- paste0(base_url, "?nutrients=", nutrients,
-                         "&max=",max_rows,"&subset=",subset,
-                         "&fg=", food_group, "&offset=", 
-                         offset, "&format=xml", 
-                         "&api_key=",api_key, collapse = "")
-    }
     
-    if (is.null(ndbno) || missing(ndbno)) {
-      request_URL <- base_url
-    }
-    else {
-      request_URL <- paste0(base_url, paste0("&ndbno=",
-                                             ndbno), 
-                            collapse = "")
-    }
-    xml_result <- httr::GET(request_URL)
+  if(grepl("&[a-z]+=?&",request_URL)){
+    request_URL<- gsub("&[a-z]+\\=(?=&)","",request_URL,
+                       perl = TRUE)
+  }
+ 
+
+xml_result <- httr::GET(request_URL)
     
     if(httr::http_error(xml_result) & 
-       xml_result$status_code == 403){
+      xml_result$status_code == 403){
       stop("Access to the server was denied. 
       Did you provide a correct API key?!
            Please sign up for one at 
            https://ndb.nal.usda.gov/ndb/doc/index")
-    }
+   }
     
     if(httr::http_type(xml_result) !="application/xml"){
       stop("Result is not XML, please try again or check your input.")
       
     }
     
-    else{
-      xml_result
-    }
+  xml_result
+    
   }
 }
