@@ -64,7 +64,7 @@ The result of `get_nutrients` is a list of unprocessed `JSON` and semi_processed
 
 **2. Semi_Processed Data** : ```res[[2]]```
 
-To get any form of information from the report, one could use `get_report_info` as shown here:
+To get any form of information from the report, one could use `get_nutrient_info` as shown here:
 
 ```
 head(get_nutrient_info(res, abbr = T))
