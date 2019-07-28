@@ -47,6 +47,15 @@ The main function of this package is `get_nutrients` that can be used as follows
 res<-get_nutrients(nutrients = c("204","510"))
 ```
 
+To get some specific output from the above result, we can use `get_report_info`. To get the names for instance:
+
+```
+# get only first item from the list
+ get_report_info("name", res)[[1]][1]
+[1] "Abiyuch, raw"
+
+```
+
 To easily get a `nutrient_id`(ie nutrients in `get_nutrients` above), one can obtain nutrients as shown below. If no data set name is provided, the default is to use `nutrient_ids` that is part of the package.
 
 ```
@@ -112,8 +121,7 @@ res3 <- get_list(list_type = "ns",
 The above will allow us to obtain a list of speciality nutrients(`ns`) sorted by id. Depending on the format requested, the results can then be further processed as follows:
 
 ```
-res
-usdar::pretty_xml(res,tag="name")
+usdar::pretty_xml(res2,tag="name")
 usdar::pretty_json(res3)
 
 ```
