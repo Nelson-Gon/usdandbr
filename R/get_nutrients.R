@@ -89,30 +89,32 @@ if (is.null(nutrients) || missing(nutrients)) {
   }
   else {
     xml_base <- "http://api.nal.usda.gov/ndb/reports/"
+    request_URL <- paste0(xml_base, 
+                          "?nutrients=", 
+                          nutrients,
+                          paste0("&ndbno=",
+                                 ndbno),
+                          "&max=",max_rows,
+                          "&offset=",offset,
+                          "&fg=", food_group,
+                          "&format=xml", 
+                          "&api_key=", api_key,
+                          collapse = "")
 if(length(nutrients)==1){
-  request_URL <- paste0(xml_base, 
-                        "?nutrients=", 
-                        nutrients,
-                        paste0("&ndbno=",
-                               ndbno),
-                        "&max=",max_rows,
-                        "&offset=",offset,
-                        "&fg=", food_group,
-                        "&format=xml", 
-                        "&api_key=", api_key,
-                        collapse = "")
-  
+ 
+  request_URL <- request_URL
 }
 
-      
-    
-  if(grepl("&[a-z]+=?&",request_URL)){
+   if(grepl("&[a-z]+=?&",request_URL)){
     request_URL<- gsub("&[a-z]+\\=(?=&)","",request_URL,
                        perl = TRUE)
-  }
+   }
+    
+   
  
 
 xml_result <- httr::GET(request_URL)
+
     
     if(httr::http_error(xml_result) & 
       xml_result$status_code == 403){
