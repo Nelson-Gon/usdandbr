@@ -45,6 +45,13 @@ The main function of this package is `get_nutrients` that can be used as follows
 
 ```
 res<-get_nutrients(nutrients = c("204","510"))
+
+# MUltiple food groups
+get_nutrients(nutrients=c("204","205"),
+              result_type="json",
+              offset = 25,
+              max_rows = 50,
+              food_group = c("0500","0100"))
 ```
 
 To get some specific output from the above result, we can use `get_report_info`. To get the names for instance:
@@ -97,8 +104,12 @@ pretty_json(res)
 If `xml` was requested in `get_nutrients`, `pretty_xml` can be used to further process the data. For more details on usage, please see `help(pretty_xml)`. For example if we requested `xml`, we could do:
 
 ```
-res2 <- get_nutrients(nutrients="204",
-result_type="xml")
+res2 <- get_nutrients(nutrients=c("204","205"),
+              result_type="xml",
+              offset = 25,
+              max_rows = 50,
+              food_group = c("0500","0100"),
+              ndbno = "01009")
 
 pretty_xml(res2,"food",target = "name")
 

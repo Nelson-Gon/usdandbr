@@ -8,7 +8,7 @@
 }
 \usage{
 get_nutrients(result_type = "json", nutrients = NULL, api_key = NULL,
-  ndbno = NULL, subset = 0, offset = 0, max_rows = 50,
+  ndbno = NULL, subset = 0, offset = 25, max_rows = 50,
   food_group = NULL)
 }
 \arguments{
@@ -24,7 +24,7 @@ to `NULL`.}
 
 \item{subset}{Numeric. Defaults to 0 for all food types. 1 to return common food types.}
 
-\item{offset}{Where should offsetting begin? Defaults to 0. Lower values mean more results.}
+\item{offset}{Where should offsetting begin? Defaults to 25. Lower values mean more results.}
 
 \item{max_rows}{Numeric. Maximum number of rows to return. Defaults to 50.}
 
@@ -44,6 +44,19 @@ get_nutrients(result_type = "json", nutrients = "204",
 food_group = "0500",
 max_rows = 50, 
 subset = 1)
+# Use xml
+get_nutrients(nutrients=c("204","205"),
+result_type="xml",
+offset = 0,
+max_rows = 40,
+ndbno = "01009")
+
+# Multiple food groups
+get_nutrients(nutrients=c("204","205"),
+result_type="json",
+offset = 25,
+max_rows = 50,
+food_group = c("0500","0100"))
 }
 }
 \references{

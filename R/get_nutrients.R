@@ -9,7 +9,7 @@
 #' @param ndbno      A string. A unique ndb number for a specific food of interest. Use this if nutrients is set
 #' to `NULL`.
 #' @param subset   Numeric. Defaults to 0 for all food types. 1 to return common food types.
-#' @param offset   Where should offsetting begin? Defaults to 0. Lower values mean more results.
+#' @param offset   Where should offsetting begin? Defaults to 25. Lower values mean more results.
 #' @param max_rows Numeric. Maximum number of rows to return. Defaults to 50. 
 #' @param food_group String. Return results for only a certain food group.
 #' @return A list of length two. The first list element returns unprocessed data if JSON is requested while the second is a data.frame object from
@@ -22,12 +22,26 @@
 #' food_group = "0500",
 #' max_rows = 50, 
 #' subset = 1)
+#' # Use xml
+#' get_nutrients(nutrients=c("204","205"),
+#' result_type="xml",
+#' offset = 0,
+#' max_rows = 40,
+#' ndbno = "01009")
+#' 
+#' # Multiple food groups
+#' get_nutrients(nutrients=c("204","205"),
+#'result_type="json",
+#' offset = 25,
+#' max_rows = 50,
+#' food_group = c("0500","0100"))
 #' }
 #' @source \url{https://ndb.nal.usda.gov/ndb/doc/apilist/API-NUTRIENT-REPORT.md}
 #' @export
-get_nutrients <- function (result_type = "json", nutrients = NULL, api_key = NULL, 
+get_nutrients <- function (result_type = "json", nutrients = NULL, 
+                           api_key = NULL, 
                            ndbno = NULL, subset = 0,
-                           offset = 0, max_rows = 50,
+                           offset = 25, max_rows = 50,
                            food_group = NULL) 
 {
   if(is.null(api_key)){
@@ -45,7 +59,9 @@ if (is.null(nutrients) || missing(nutrients)) {
                                        collapse = ""),"&max=",
                        max_rows,"&offset=",
                        offset,
-                       "&fg=", food_group,"&subset=",
+                       paste0("&fg=", food_group,
+                              collapse=""),
+                              "&subset=",
                        subset,
                         collapse = "")
     if (is.null(ndbno) || missing(ndbno)) {
@@ -93,10 +109,12 @@ if (is.null(nutrients) || missing(nutrients)) {
                           "?nutrients=", 
                           nutrients,
                           paste0("&ndbno=",
-                                 ndbno),
+                                 ndbno,
+                                 collapse = ""),
                           "&max=",max_rows,
                           "&offset=",offset,
-                          "&fg=", food_group,
+                          paste0("&fg=", food_group,
+                                 collapse=""),
                           "&format=xml", 
                           "&api_key=", api_key,
                           collapse = "")
@@ -104,14 +122,32 @@ if(length(nutrients)==1){
  
   request_URL <- request_URL
 }
+    else{
+      request_URL<-paste0(xml_base, 
+             "?nutrients=", 
+             nutrients[1],
+             paste0("&nutrients=",
+                    nutrients[-1],
+                    collapse = ""),
+             paste0("&ndbno=",
+                    ndbno,
+                    collapse = ""),
+             "&max=",max_rows,
+             "&offset=",offset,
+             paste0("&fg=", food_group,
+                    collapse=""),
+             "&format=xml", 
+             "&api_key=", api_key,
+             collapse = "")
+      
+    }
 
    if(grepl("&[a-z]+=?&",request_URL)){
-    request_URL<- gsub("&[a-z]+\\=(?=&)","",request_URL,
+   request_URL<- gsub("&[a-z]+\\=(?=&)","",request_URL,
                        perl = TRUE)
    }
     
    
- 
 
 xml_result <- httr::GET(request_URL)
 
@@ -124,6 +160,12 @@ xml_result <- httr::GET(request_URL)
            https://ndb.nal.usda.gov/ndb/doc/index")
    }
     
+if(httr::http_error(xml_result) & 
+   xml_result$status_code == 400){
+
+  stop("Please check your input or perhaps you're requesting
+       for too large a result. See examples for additional help.")
+}
     if(httr::http_type(xml_result) !="application/xml"){
       stop("Result is not XML, please try again or check your input.")
       
