@@ -77,6 +77,7 @@ get_list <- function(list_type="f", sort_by="n", api_key=NULL,
            Please sign up for one at 
            https://ndb.nal.usda.gov/ndb/doc/index")
     }
+    final_res
     
     
   }
