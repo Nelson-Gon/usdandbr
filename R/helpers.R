@@ -15,6 +15,7 @@ set_apikey <- function(api_key=NULL){
   }
   
   Sys.setenv("api_key"=api_key)
+  message("API Key Now set for this session.")
   
 }
 
