@@ -27,7 +27,7 @@
 #' }
 #' 
 #' 
-#' 
+#' @export
 db_search<- function(api_key=NULL,
                      result_type=NULL,
                      search_term=NULL,
