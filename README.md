@@ -138,6 +138,34 @@ usdar::pretty_json(res3)
 
 ```
 
+### **Plain Text Search**
+
+To use plain text to search the database, we can use `db_search` as follows:
+
+```
+#' # sorted by name
+ res<-db_search(result_type = "json",search_term = "Acerola",
+ sort_by = "n")
+ # Get manufacturers
+ res[[1]]$item["manu"]
+#                           manu
+#1                          none
+#2                          none
+#3 Sourdough:  A European Bakery
+#4   BOWMAN ANDROS PRODUCTS, LLC
+
+ res<-db_search(result_type = "xml",search_term = "Acerola", sort_by = "r")
+#' #process xml
+pretty_xml(res, tag="name")
+
+#{xml_nodeset (4)}
+#[1] <name>Acerola juice, raw</name>
+#[2] <name>Acerola, (west indian cherry), raw</name>
+#[3] <name>WHOLE FOODS MARKET, SUPER STARS, ALL NATURAL #FLAVORS  ...
+#[4] <name>FRUIT ME UP!, BOOST, BLENDED FRUIT SAUCE, #BLUEBERRY,  
+
+ 
+  ```
 
 For more information about any of these functions, please take a look at `?function_name` or see detailed information for the package in `help(package="usdar")`. 
 
