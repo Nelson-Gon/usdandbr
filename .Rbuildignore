@@ -5,3 +5,5 @@ LICENSE
 usdandbr.Rproj
 README.html
 ^data-raw$
+^_config\.yml
+\.yml$
