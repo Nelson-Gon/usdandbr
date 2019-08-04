@@ -47,7 +47,7 @@ The main function of this package is `get_nutrients` that can be used as follows
 res<-get_nutrients(nutrients = c("204","510"))
 
 # MUltiple food groups
-get_nutrients(nutrients=c("204","205"),
+res2 <- get_nutrients(nutrients=c("204","205"),
               result_type="json",
               offset = 25,
               max_rows = 50,
@@ -59,7 +59,7 @@ To get some specific output from the above result, we can use `get_report_info`.
 ```
 # get only first item from the list
  get_report_info("name", res)[[1]][1]
-[1] "Abiyuch, raw"
+#[1] "APPLEBEE'S, mozzarella sticks"
 
 ```
 
@@ -76,22 +76,36 @@ For more `nutrient_ids`, please use the data set `nutrient_ids` clean. The clean
 
 The result of `get_nutrients` is a list of unprocessed `JSON` and semi_processed data that can be obtained as follows:
 
-**1. Unprocessed JSON** : ```res[[1]] ```
+**1. Unprocessed JSON** : 
 
-**2. Semi_Processed Data** : ```res[[2]]```
+```
+
+res[[1]] 
+
+
+```
+
+**2. Semi_Processed Data** : 
+
+```
+res[[2]]
+
+```
 
 To get any form of information from the report, one could use `get_nutrient_info` as shown here:
 
 ```
 res<-get_nutrients(nutrients = "204")
-head(get_nutrient_info(res))
-#         Source        Type             Value
-#1  Abiyuch, raw nutrient_id               204
-#2  Abiyuch, raw    nutrient Total lipid (fat)
-#3  Abiyuch, raw        unit                 g
-#4  Abiyuch, raw       value              0.11
-#5  Abiyuch, raw          gm               0.1
-#6 Acerola juice nutrient_id               204
+# Uses defaults, returns abbreviated data since
+# abbr is set to TRUE and bind_data is also TRUE.
+  head(get_nutrient_info(res))
+              Source             Value
+nutrient_id  Alcoholic beve           ID: 204
+nutrient     Alcoholic beve Total lipid (fat)
+unit         Alcoholic beve           Unit: g
+value        Alcoholic beve              2.48
+gm           Alcoholic beve               7.6
+nutrient_id1 Alcoholic beve           ID: 204
 
 ```
 
@@ -126,11 +140,24 @@ res3 <- get_list(list_type = "ns",
                 sort_by = "id",max_items = 50,
                 offset = 12,format = "json")
                 
+
+head(res3$list$item)
+
+offset  id              name
+1      0 710          Daidzein
+2      1 711         Genistein
+3      2 712         Glycitein
+4      3 713 Total isoflavones
+5      4 714       Biochanin A
+6      5 715      Formononetin
+                
   
         
 ```
 
-The above will allow us to obtain a list of speciality nutrients(`ns`) sorted by id. Depending on the format requested, the results can then be further processed as follows:
+The above will allow us to obtain a list of speciality nutrients(`ns`) sorted by id. The above result is also useful if one would like to quickly get Nutrient IDs if they are not available in the data sets via `get_nutrient_id`.
+
+Depending on the format requested, the results can then be further processed as follows:
 
 ```
 usdar::pretty_xml(res2,tag="name")
