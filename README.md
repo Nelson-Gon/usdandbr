@@ -109,10 +109,19 @@ nutrient_id1 Alcoholic beve           ID: 204
 
 ```
 
-To get a `pretty_json` output, one can use `pretty_json` on the above results as follows:
+The above output can be further processed by using `pretty_json` that returns a processed `data.frame object as shown below.
 
 ```
-pretty_json(res)
+results <- get_nutrient_info(res)
+head(pretty_json(results))
+
+#Source                 Food        ID   Value Value_2
+#1 Alcoholic beve Total lipid (fat) 204  2.48    7.60
+#2 Alcoholic beve Total lipid (fat) 204  0.59    1.88
+#3 Alcoholic beve Total lipid (fat) 204  0.00    0.00
+#4 Alcoholic beve Total lipid (fat) 204  0.03    0.10
+#5 Alcoholic beve Total lipid (fat) 204  0.01    0.03
+#6 Alcoholic beve Total lipid (fat) 204  0.00    0.00
 
 ```
 If `xml` was requested in `get_nutrients`, `pretty_xml` can be used to further process the data. For more details on usage, please see `help(pretty_xml)`. For example if we requested `xml`, we could do:
