@@ -7,11 +7,26 @@
 pretty_json(result)
 }
 \arguments{
-\item{result}{An object obtained from `get_nutrients`}
+\item{result}{An object obtained from `get_nutrient_info`}
 }
 \value{
-A pretty `dput` style list.
+A `data.frame` object with prettier JSON formatter data.
 }
 \description{
 A convenience function that returns processed JSON data.
+}
+\examples{
+\dontrun{
+# After setting api_key, get data
+res <-get_nutrients(nutrients=c("204","205"),
+result_type="json",
+offset = 25,max_rows = 50,food_group = c("0500","0100"))
+# use get_nutrient_info to get a semi-processed output
+res2<-get_nutrient_info(res)
+#prettify the above output
+pretty_json(res2)
+}
+}
+\seealso{
+\code{\link{get_nutrient_info}}
 }
