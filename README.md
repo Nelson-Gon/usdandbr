@@ -97,22 +97,22 @@ When `json` data is requested, a prettier output can be obtained with `get_nutri
 ```
 # Using res above
 # Uses defaults, returns abbreviated data since
-# abbr is set to TRUE and bind_data is also TRUE.
+# abbr is set to TRUE.
   head(get_nutrient_info(res))
-      Name        nutrient_id  ndno unit nutrient value
-1 APPLEBEE'S, mo         510 36004    g   Valine 0.365
-2 Apples, canned         510 09008    g   Valine 0.016
-3 Apples, dehydr         510 09010    g   Valine 0.025
-4 Apples, dehydr         510 09009    g   Valine 0.037
-5 Apples, dried,         510 09013    g   Valine 0.025
-6 Apples, dried,         510 09012    g   Valine 0.026
-         Measure Weight
-1      1.0 piece     32
-2 1.0 cup slices    204
-3        1.0 cup    193
-4        1.0 cup     60
-5        1.0 cup    280
-6        1.0 cup    255
+      Name ndbno  ID          Nutrient Weight Unit Value
+1 APPLEBEE'S, mo 36004 510            Valine     32    g 0.365
+2 Apples, canned 09008 204 Total lipid (fat)    204    g  5.88
+3 Apples, dehydr 09010 510            Valine    193    g 0.016
+4 Apples, dehydr 09009 204 Total lipid (fat)     60    g  0.88
+5 Apples, dried, 09013 510            Valine    280    g 0.025
+6 Apples, dried, 09012 204 Total lipid (fat)    255    g  0.23
+         Measure     Gm
+1      1.0 piece  1.140
+2 1.0 cup slices 18.370
+3        1.0 cup  0.008
+4        1.0 cup  0.430
+5        1.0 cup  0.013
+6        1.0 cup  0.120
 
 ```
 

@@ -3,8 +3,6 @@
 #' a convenient way to get semi-clean data.
 #' @param res An object of type `json` obtained from `get_nutrients`
 #' @param abbr Logical. Should the names of Source be abbrevaited? Defaults to  TRUE.
-#' @param bind_data Logical. Should the data be bound as a single `data.frame` object? Defaults
-#' to TRUE.
 #' @param abbr_limit If abbr is TRUE, this determines the abbreviation limit. Defaults to 
 #' 14.
 #' @return The default return value is a data.frame object showing
@@ -18,41 +16,60 @@
 
 #' }
 #' @export
-get_nutrient_info <-function(res, bind_data = TRUE,
+get_nutrient_info <-function(res, 
                         abbr = TRUE, abbr_limit = 14){
   
 ######## This was initially more automated #######
 ###### The method failed for certain tasks and highly depended on seq formation #####
 ## This circumvents that. API changes might necessitate changes in this function#####
   
-  
-  final_res <- lapply(res[[2]]$report$foods, function(x)
-  {
-    
-    final_df <- data.frame(Name= x[["name"]],
-                           Weight=x[["weight"]], 
-                           
-                           Measure = x[["measure"]],ndno=x[["ndbno"]],
-                           Nutrient_id = x[["nutrients"]][[1]][1],
-                           Unit = x[["nutrients"]][[1]][2],
-                           value = x[["nutrients"]][[1]][3],
-                           Gm = x[["nutrients"]][[1]][4],
-                           stringsAsFactors = FALSE)
+
+res1<-do.call(rbind,lapply(res[[2]]$report$foods,
+                                function(x)
+      do.call(rbind, lapply(x$nutrients,
+                            
+                            function(y)
+                              
+                              data.frame(ID = y[[1]],
+                                         Nutrient=y[[2]],
+                                         Unit=y[[3]], 
+                                         Value=y[[4]],
+                                         Gm=y[[5]],
+                                         stringsAsFactors = FALSE)))))
     if(abbr){
-      final_df["Name"] <- substring(final_df["Name"],1,abbr_limit)
+      final_df <-do.call(rbind,
+                         lapply(res[[2]]$report$foods, 
+                                function(x)
+                                  
+                                  data.frame(ndbno = x[[1]],
+                                             Name=substring(x[[2]],1,
+                                                            abbr_limit),
+                                             Weight=x[[3]],
+                                             Measure = x[[4]],
+                                             stringsAsFactors = FALSE)))  
+      
+      
     }
-    final_df[,c(1,5,4,7,6,8,3,2)]
-  })
-  
-  if(bind_data){
-    do.call(rbind,final_res)
+    
+    
+    else{
+      final_df <-do.call(rbind,
+                         lapply(res[[2]]$report$foods, 
+                                function(x)
+                                  
+                                  data.frame(ndbno = x[[1]],
+                                             Name=x[[2]],
+                                             Weight=x[[3]],
+                                             Measure = x[[4]],
+                                             stringsAsFactors = FALSE)))
+    }
+    
+    
+    
+    do.call(data.frame,list(final_df,res1))[,c(2,1,5,6,3,7,8,4,9)]
+    
+    
     
   }
-  else{
-    final_res
-  }
   
-}
-
-
- 
+  

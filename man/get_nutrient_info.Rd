@@ -4,14 +4,10 @@
 \alias{get_nutrient_info}
 \title{Convert JSON data to a simpler data.frame object.}
 \usage{
-get_nutrient_info(res, bind_data = TRUE, abbr = TRUE,
-  abbr_limit = 14)
+get_nutrient_info(res, abbr = TRUE, abbr_limit = 14)
 }
 \arguments{
 \item{res}{An object of type `json` obtained from `get_nutrients`}
-
-\item{bind_data}{Logical. Should the data be bound as a single `data.frame` object? Defaults
-to TRUE.}
 
 \item{abbr}{Logical. Should the names of Source be abbrevaited? Defaults to  TRUE.}
 
