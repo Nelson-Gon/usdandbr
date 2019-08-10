@@ -19,7 +19,7 @@
 #' list of length 1 with a semi_processed JSON object. The return value for XML is 
 #' an xml document.
 #' @references \url{https://ndb.nal.usda.gov/ndb/doc/apilist/API-LIST.md}
-#' @seealso \code{\link{get_nutrients}} \code{\link{pretty_xml}} \code{\link{pretty_json}}
+#' @seealso \code{\link{get_nutrients}} \code{\link{pretty_xml}} \code{\link{get_nutrient_info}}
 #' @examples 
 #' \dontrun{
 #' res <- get_list(

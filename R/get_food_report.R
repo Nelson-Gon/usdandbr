@@ -15,7 +15,7 @@
 #'                pretty_xml(res, tag="food", target="type")
 #'                }
 #' @source \url{https://ndb.nal.usda.gov/ndb/doc/apilist/API-FOOD-REPORTV2.md}
-#' @seealso \code{\link{get_nutrients}} \code{\link{pretty_xml}} \code{\link{pretty_json}}
+#' @seealso \code{\link{get_nutrients}} \code{\link{pretty_xml}} \code{\link{get_nutrient_info}}
 #' @export
 
 get_food_report <- function(api_key=NULL,

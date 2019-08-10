@@ -55,5 +55,5 @@ usdar::pretty_json(res)
 \url{https://ndb.nal.usda.gov/ndb/doc/apilist/API-LIST.md}
 }
 \seealso{
-\code{\link{get_nutrients}} \code{\link{pretty_xml}} \code{\link{pretty_json}}
+\code{\link{get_nutrients}} \code{\link{pretty_xml}} \code{\link{get_nutrient_info}}
 }

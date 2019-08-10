@@ -92,37 +92,43 @@ res[[2]]
 
 ```
 
-To get any form of information from the report, one could use `get_nutrient_info` as shown here:
+When `json` data is requested, a prettier output can be obtained with `get_nutrient_info` as shown here:
 
 ```
-res<-get_nutrients(nutrients = "204")
+# Using res above
 # Uses defaults, returns abbreviated data since
 # abbr is set to TRUE and bind_data is also TRUE.
   head(get_nutrient_info(res))
-              Source             Value
-nutrient_id  Alcoholic beve           ID: 204
-nutrient     Alcoholic beve Total lipid (fat)
-unit         Alcoholic beve           Unit: g
-value        Alcoholic beve              2.48
-gm           Alcoholic beve               7.6
-nutrient_id1 Alcoholic beve           ID: 204
+   Name nutrient_id  ndno unit nutrient value
+1 APPLEBEE'S, mo         510 36004    g   Valine 0.365
+2 Apples, canned         510 09008    g   Valine 0.016
+3 Apples, dehydr         510 09010    g   Valine 0.025
+4 Apples, dehydr         510 09009    g   Valine 0.037
+5 Apples, dried,         510 09013    g   Valine 0.025
+6 Apples, dried,         510 09012    g   Valine 0.026
+         Measure Weight
+1      1.0 piece     32
+2 1.0 cup slices    204
+3        1.0 cup    193
+4        1.0 cup     60
+5        1.0 cup    280
+6        1.0 cup    255
 
 ```
 
-The above output can be further processed by using `pretty_json` that returns a processed `data.frame object as shown below.
+
+The above returns an object with the source(Name) abbreviated. One can override this by setting `abbr` to `FALSE`.
+
 
 ```
-results <- get_nutrient_info(res)
-head(pretty_json(results))
-
-#Source                 Food        ID   Value Value_2
-#1 Alcoholic beve Total lipid (fat) 204  2.48    7.60
-#2 Alcoholic beve Total lipid (fat) 204  0.59    1.88
-#3 Alcoholic beve Total lipid (fat) 204  0.00    0.00
-#4 Alcoholic beve Total lipid (fat) 204  0.03    0.10
-#5 Alcoholic beve Total lipid (fat) 204  0.01    0.03
-#6 Alcoholic beve Total lipid (fat) 204  0.00    0.00
-
+result<-get_nutrient_info(res, abbr=FALSE)
+head(result[,1])
+[1] "APPLEBEE'S, mozzarella sticks"                        
+[2] "Apples, canned, sweetened, sliced, drained, heated"   
+[3] "Apples, dehydrated (low moisture), sulfured, stewed"  
+[4] "Apples, dehydrated (low moisture), sulfured, uncooked"
+[5] "Apples, dried, sulfured, stewed, with added sugar"    
+[6] "Apples, dried, sulfured, stewed, without added sugar"
 ```
 If `xml` was requested in `get_nutrients`, `pretty_xml` can be used to further process the data. For more details on usage, please see `help(pretty_xml)`. For example if we requested `xml`, we could do:
 
@@ -138,7 +144,7 @@ pretty_xml(res2,"food",target = "name")
 
 ```
 
-The above would return a list of lists with the nutrient data base number, name, weigth and measure. 
+The above would return a list of lists with the nutrient data base number, name, weight and measure. 
 
 ## **Lists**
 

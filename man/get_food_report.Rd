@@ -42,5 +42,5 @@ get_food_report(ndbno = c("35193","01009"),
                }
 }
 \seealso{
-\code{\link{get_nutrients}} \code{\link{pretty_xml}} \code{\link{pretty_json}}
+\code{\link{get_nutrients}} \code{\link{pretty_xml}} \code{\link{get_nutrient_info}}
 }
