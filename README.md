@@ -99,7 +99,7 @@ When `json` data is requested, a prettier output can be obtained with `get_nutri
 # Uses defaults, returns abbreviated data since
 # abbr is set to TRUE and bind_data is also TRUE.
   head(get_nutrient_info(res))
-   Name nutrient_id  ndno unit nutrient value
+      Name        nutrient_id  ndno unit nutrient value
 1 APPLEBEE'S, mo         510 36004    g   Valine 0.365
 2 Apples, canned         510 09008    g   Valine 0.016
 3 Apples, dehydr         510 09010    g   Valine 0.025
