@@ -211,19 +211,19 @@ pretty_xml(res, tag="name")
 
 For more information about any of these functions, please take a look at `?function_name` or see detailed information for the package in `help(package="usdar")`. 
 
-For issues, feature requests and/or contributions, please raise an issue at [usdar](https://www.github.com/Nelson-Gon/usdar/issues).
+**For issues, feature requests and/or contributions, please raise an issue at [usdar](https://www.github.com/Nelson-Gon/usdar/issues).**
 
 
 
 **Sources**
 
-1.US Department of Agriculture, Agricultural Research Service, Nutrient Data Laboratory. USDA National Nutrient Database for Standard Reference, Release 28. Version Current:  September 2015.  Internet:  /nea/bhnrc/ndl
+1.US Department of Agriculture, Agricultural Research Service, Nutrient Data Laboratory. USDA National Nutrient Database for Standard Reference, Release 28. Version Current: September 2015.  Internet:  /nea/bhnrc/ndl
 
 2. US Department of Agriculture, Agricultural Research Service, Nutrient Data Laboratory. USDA National Nutrient Database for Standard Reference, Release 28. Version Current:  September 2015.  Internet:  /nea/bhnrc/ndl
 
 3. Jay, J., Sanders, A., Reid, R. and Brouwer, C. (2018). Connecting nutrition composition measures to biomedical research. BMC Research Notes, 11(1).  [link](https://link.springer.com/article/10.1186%2Fs13104-018-3997-y)
 
-4. USDA Food Reports Data Base(Version 2) https://ndb.nal.usda.gov/ndb/doc/apilist/API-FOOD-REPORT.md
+4. USDA Food Reports Data Base[Version 2](https://ndb.nal.usda.gov/ndb/doc/apilist/API-FOOD-REPORT.md)
 
 
 **If you have got this far, thank you and please provide feedback on what works and what doesn't.**
