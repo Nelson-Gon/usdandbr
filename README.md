@@ -217,7 +217,7 @@ For more information about any of these functions, please take a look at `?funct
 
 **Sources**
 
-1.US Department of Agriculture, Agricultural Research Service, Nutrient Data Laboratory. USDA National Nutrient Database for Standard Reference, Release 28. Version Current: September 2015.  Internet:  /nea/bhnrc/ndl
+1. US Department of Agriculture, Agricultural Research Service, Nutrient Data Laboratory. USDA National Nutrient Database for Standard Reference, Release 28. Version Current: September 2015.  Internet:  /nea/bhnrc/ndl
 
 2. US Department of Agriculture, Agricultural Research Service, Nutrient Data Laboratory. USDA National Nutrient Database for Standard Reference, Release 28. Version Current:  September 2015.  Internet:  /nea/bhnrc/ndl
 
