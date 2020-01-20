@@ -8,7 +8,7 @@
 
 This repository is no longer being maintained because the API it references is slated for End of Life. Instead, please use one of the following alternative packages(by the same author):
 
-1. `pyfdc` available that can be accessed [here](https://github.com/Nelson-Gon/pyfdc)
+1. `pyfdc` that can be accessed [here](https://github.com/Nelson-Gon/pyfdc)
 
 This is written in python and hence only supports python.
 
