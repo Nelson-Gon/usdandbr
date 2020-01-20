@@ -1,7 +1,26 @@
 # usdar
 
 [![Build Status](https://travis-ci.org/Nelson-Gon/usdar.svg?branch=master)](https://travis-ci.org/Nelson-Gon/usdar)   [![license](https://img.shields.io/badge/license-GPL--2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
-[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![lifecycle](https://img.shields.io/badge/lifecycle-retired-orange.svg)](https://www.tidyverse.org/lifecycle/#retired)
+
+---
+# **IMPORTANT NOTICE**
+
+This repository is no longer being maintained because the API it references is slated for End of Life. Instead, please use one of the following alternative packages(by the same author):
+
+1. `pyfdc` available that can be accessed [here](https://github.com/Nelson-Gon/pyfdc)
+
+This is written in python and hence only supports python.
+
+2. `rfdc` accessible [here](https://github.com/Nelson-Gon/rfdc)
+
+This is meant to serve as the direct R replacement of `usdar` although it does differ in several ways from `usdar` due to differences in the APIs used.
+
+>Thank you for having used `usdar` and for reading this far.
+
+
+---
+
 
 
 **Access and retrieve data from the USDA Nutrient Data Base.**
